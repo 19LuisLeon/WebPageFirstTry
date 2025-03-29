@@ -69,5 +69,47 @@
     <footer>
         <p>&copy; 2025 Los Consejos del Abuelo | Inspiración para el alma</p>
     </footer>
+    <script>
+        async function enviarMensaje() {
+            let mensaje = document.getElementById("mensaje").value;
+            let respuestaDiv = document.getElementById("respuesta");
+    
+            let respuesta = await fetch("<script>
+    async function enviarMensaje() {
+        let mensaje = document.getElementById("mensaje").value;
+        let respuestaDiv = document.getElementById("respuesta");
+
+        let respuesta = await fetch("https://tuservidor.n8n.cloud/webhook/chatbot", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ mensaje: mensaje })
+        });
+
+        let datos = await respuesta.json();
+        respuestaDiv.innerHTML = "Chatbot: " + datos.respuesta;
+    }
+</script>
+
+<div style="position: fixed; bottom: 10px; right: 10px; background: white; padding: 10px; border: 1px solid black;">
+    <input type="text" id="mensaje" placeholder="Escribe tu mensaje">
+    <button onclick="enviarMensaje()">Enviar</button>
+    <div id="respuesta"></div>
+</div>
+", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ mensaje: mensaje })
+            });
+    
+            let datos = await respuesta.json();
+            respuestaDiv.innerHTML = "Chatbot: " + datos.respuesta;
+        }
+    </script>
+    
+    <div style="position: fixed; bottom: 10px; right: 10px; background: white; padding: 10px; border: 1px solid black;">
+        <input type="text" id="mensaje" placeholder="Escribe tu mensaje">
+        <button onclick="enviarMensaje()">Enviar</button>
+        <div id="respuesta"></div>
+    </div>   
 </body>
 </html>
